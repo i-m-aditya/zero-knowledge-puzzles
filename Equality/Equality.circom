@@ -4,8 +4,12 @@ pragma circom 2.1.4;
 // Return using signal 'c'.
 
 template Equality() {
-   // Your Code Here..
-
+   signal input a[3];
+   signal output c;
+   // res operation is not R1C, so we cannot use <== directly
+   signal res;
+   res <-- a[0]==a[1]&&a[0]==a[2];
+   c <== res;
    
 }
 

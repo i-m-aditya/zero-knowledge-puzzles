@@ -8,6 +8,17 @@ template ForLoop() {
 
 // Your Code here..
 
+    signal input a[2];
+    signal output c;
+
+    var res = 0;
+    for (var i = 0; i < 4; i++){
+        res += a[0]+a[1];
+    }
+
+    c <== res; // The result is the last element of temp
+
+
 }  
 
 component main = ForLoop();

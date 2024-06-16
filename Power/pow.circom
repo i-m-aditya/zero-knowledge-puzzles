@@ -8,6 +8,13 @@ pragma circom 2.1.4;
 template Pow() {
    
    // Your Code here.. 
+   signal input a[2];
+   signal output c;
+
+   // Use auxiliar signal because a**b is not R1C
+   signal res;
+   res <-- a[0]**a[1];
+   c <== res;
 }
 
 component main = Pow();

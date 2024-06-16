@@ -73,8 +73,37 @@ template Sudoku () {
     3 === row4[3].out + row4[2].out + row4[1].out + row4[0].out; 
 
     // Write your solution from here.. Good Luck!
-    
-    
+
+    component column[4];
+    for(var i=0; i<4; i++) {
+        var sum = 0;
+        for (var j=0; j<4; j++) {
+            sum += solution[i*4+j];
+        }
+        column[i] = IsEqual();
+        column[i].in[0] <== sum;
+        column[i].in[1] <== 10;
+
+    }
+
+    component row[4];
+
+    for(var i=0; i<4; i++) {
+        var sum = 0;
+        for (var j=0; j<4; j++) {
+            sum += solution[j*4+i];
+        }
+        row[i] = IsEqual();
+        row[i].in[0] <== sum;
+        row[i].in[1] <== 10;
+    }
+
+    component equal = IsEqual();
+     // Since the output should be 1 (true) for each of the 4 columns and rows, we check that the sum is equal to 8
+    signal sum <== column[0].out + column[1].out + column[2].out + column[3].out + row[0].out + row[1].out + row[2].out + row[3].out;
+    equal.in[0] <== sum;
+    equal.in[1] <== 8;
+    out <== equal.out;
    
 }
 
